@@ -3,6 +3,8 @@ package com.ujjwal.fakestore.store.presentation.productScreen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ujjwal.fakestore.store.domain.repository.ProductRepository
+import com.ujjwal.fakestore.store.presentation.util.sendEvent
+import com.ujjwal.fakestore.util.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -29,6 +31,7 @@ class ProductsViewModel @Inject constructor(
                 }
                 .onLeft { error ->
                     _state.update { it.copy(error = error.error.message) }
+                    sendEvent(Event.Toast(error.error.message))
                 }
             _state.update {
                 it.copy(isLoading = false)
