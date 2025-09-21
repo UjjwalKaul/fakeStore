@@ -17,6 +17,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.ujjwal.fakestore.store.presentation.productScreen.components.ProductCard
 import com.ujjwal.fakestore.store.presentation.util.components.LoadingDialog
 
 @Composable
@@ -51,9 +52,8 @@ fun ProductsContents(
             verticalItemSpacing = 10.dp
         ) {
             items(state.products) { product ->
-
+                ProductCard(product = product)
             }
-
         }
     }
 }
